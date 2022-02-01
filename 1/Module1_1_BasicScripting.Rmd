@@ -4,9 +4,9 @@ output:
   html_document: default
 ---
 
-This training module was developed by Dr. Kyle Roell and Dr. Julia E. Rager
+This training module was developed by Julia Rager and modified by Sool Lee
 
-Fall 2021
+Q1 2022
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -14,14 +14,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r, echo=FALSE}
-setwd("/Users/juliarager/IEHS Dropbox/Julia Rager/Research Projects/1_SRP/4_DMAC/DMAC Training Modules/Training_Modules/1_Chapter 1/1_1_Setting up R/Clean_Files/")
+setwd("~/Documents/School/CBC/workshop_materials/1/")
 ```
 
 
 # General Introduction and Installation of R and RStudio
 <br>
+
 ## What is R?
-Computer script can be used to increase data analysis reproducibility, transparency, and methods sharing, and is becoming increasingly incorporated into exposure science, toxicology, and environmental health research. One of the most utilized coding language in this research field is the **R coding language**. Some advantages of using R include the following:
+Computer script can be used to increase data analysis reproducibility, transparency, and methods sharing, and is becoming increasingly incorporated into biological research (e.g., RNA-seq, single-cell). One of the most utilized coding language in this research field is the **R coding language**. Some advantages of using R include the following:
 
 + Free, open-source programming language that is licensed under the Free Software Foundation’s GNU General Public License
 + Can be run across all major platforms and operating systems, including Unix, Windows, and MacOS
@@ -68,7 +69,7 @@ knitr::include_graphics("Module1_1_DownloadR_Image4.png")
 ## Downloading and Installing R Studio
   
 **What is R Studio?**
-RStudio is an Integrated Development Environment (IDE) for R, which makes it more 'user friendly' when developing and using R script.
+RStudio is an Integrated Development Environment (IDE) for R, which makes it more 'user friendly' when developing and using R script. **USE RSTUDIO!**
 
 RStudio Desktop is a desktop application that can be downloaded for free, online. To download RStudio:
 
@@ -84,7 +85,9 @@ knitr::include_graphics("Module1_1_RStudio_Image.png")
 ```
 
 <br>
+
 # Introduction to R Packages
+
 One of the major benefits to coding in the R language is access to the continually expanding resource of thousands of user-developed packages that aid in improved data analyses and methods sharing. Packages have varying utilities, spanning basic organization and manipulation of data, visualizing data, and more advanced approaches to parse and analyze data, with examples included in all of the proceeding training modules.
 
 In brief, packages represent compilations of code fitted for a specialized focus or purpose. These are
@@ -97,7 +100,9 @@ Examples of some common packages that we'll be using throughout these training m
 More information on these packages, as well as many others, is included throughout the training modules.
 
 <br>
+
 ## Downloading/Installing R Packages
+
 R packages often do not need to be downloaded from a website. Instead, you can just load packages through running script in R, like:
 
 ```{r, eval=FALSE, echo=TRUE}
@@ -105,6 +110,7 @@ install.packages(“tidyverse”)
 library(tidyverse)
 ```
 
+We will go over what "tidyverse" is later.
 
 It is worth noting that a function can be queried in RStudio by typing a question mark before the name of the function. For example:
 ```{r}
@@ -114,9 +120,13 @@ It is worth noting that a function can be queried in RStudio by typing a questio
 This will bring up documentation in the viewer window. 
 
 <br><br>
+
 # Scripting Basics
+
 <br>
+
 ## Comments
+
 R allows for scripts to contain non-code elements, called comments, that will not be run or interpreted. Comments are commonly included when annotating code, or describing what your code does, where your data came from, and just general textual reminders throughout the script.
 
 To make a comment, simply use a # followed by the comment. 
@@ -126,11 +136,15 @@ A # only comments out a single line of code. In other words, only that line will
 # This is an R comment!
 ```
 
-Comments are useful to help make code more interpretable for others or to add reminders of what and why parts of code may have been written.
+Comments are useful to help make code more interpretable for others or to add reminders of what and why parts of code may have been written. **You should always try to write down comments because you might not know what you did 6 months ago!**
+
+Also, shortcut for mac: command + shift + c
 
 <br>
+
 ## Starting Code
-RStudio will autofill function names, variable names, etc. by pressing tab while typing.If multiple matches are found, RStudio will provide you with a drop down list to select from, which may be useful when searching through newly installed packages or trying to quickly type variable names in an R script.
+
+RStudio will autofill function names, variable names, etc. by pressing tab while typing. If multiple matches are found, RStudio will provide you with a drop down list to select from, which may be useful when searching through newly installed packages or trying to quickly type variable names in an R script.
 
 One of the first lines of code in any script will likely include the loading of packages needed to run the script. Here is an example line of code to load a package:
 ```{r comment, eval=FALSE}
@@ -139,6 +153,7 @@ library(ggplot2)
 ```
 
 Many packages also exist as part of the baseline configuration of an R working environment, and do not require manual loading each time you launch R. These include the following packages:
+
 + datasets
 + graphics
 + methods
@@ -146,7 +161,9 @@ Many packages also exist as part of the baseline configuration of an R working e
 + utils
 
 <br>
+
 ## Setting Your Working Directory 
+
 Another step that is commonly done at the very beginning of your code is setting your working direction. This points you to where you have files that you want to upload / where the default is to deposit output files produced during your scripted activities.
 
 You must set the working directory to a local directory where data are located or output files will be saved.
@@ -164,7 +181,7 @@ To set the location of your working directory, run the following:
 ```{r, eval=FALSE, echo=TRUE}
 setwd("/filepath to where your input files are")
 ```
-Note that in macOS, filepaths use "/" as folder separaters; whereas in PCs, filepaths use "\".
+Note that in macOS, filepaths use "/" as folder separaters; whereas in PCs, filepaths use "\\".
 <br>
 
 ## Importing Files 
@@ -174,14 +191,32 @@ Other datatypes such as SAS data files, large .csv files, etc. may require diffe
 
 ```{r}
 # Read in the .csv data that's located in our working directory
-csv.dataset <- read.csv("Module1_1_ExampleData.csv")
+csv_dataset <- read.csv("Module1_1_ExampleData.csv")
 
 # Read in the .txt data
-txt.dataset <- read.table("Module1_1_ExampleData.txt")
+txt_dataset <- read.table("Module1_1_ExampleData.txt")
 ```
-These datasets now appear as saved dataframes ("csv.dataset" and "txt.dataset") in our working environment in R.
+These datasets now appear as saved dataframes ("csv_dataset" and "txt.dataset") in our working environment in R.
+
 <br>
 
+or... you could use this package
+
+```{r, eval=FALSE, echo=TRUE}
+# downloading the package
+install.packages("data.table")
+library(data.table)
+
+csv_dt_dataset <- fread("Module1_1_ExampleData.csv")
+txt_dt_dataset <- fread("Module1_1_ExampleData.txt")
+
+```
+
+```{r, echo=FALSE} 
+knitr::include_graphics("Module1_1_UsingDataTable.png")
+```
+
+**data.table package is very fast!**
 
 ## Viewing Data 
 
@@ -190,24 +225,27 @@ Datasets can be viewed in their entirety, or datasets can be subsetted to quickl
 
 Here's some example script to view just the beginnings of a dataframe, using the "head" function in R (a part of the baseline packages)
 ```{r}
-head(csv.dataset)
+head(csv_dataset)
 ```
 Here, you can see that this automatically brings up a view of the first five rows of the dataframe.
 
 Another way to view the first five rows of a dataframe is to run the following:
 ```{r}
-csv.dataset[1:5,]
+csv_dataset[1:5,]
 ```
 
 Expanding on this, to view the first 5 rows x 2 columns, run the following:
 ```{r}
-csv.dataset[1:5,1:2]
+csv_dataset[1:5,1:2]
 ```
 
 To view the entire dataset in RStudio, use the "View" function:
 ```{r, eval=FALSE, echo=TRUE}
-View(csv.dataset)
+View(csv_dataset)
 ```
+
+Or, you could simply click on "csv_dataset" data object under the "environment"
+
 <br>
 
 ## Exporting Data
@@ -216,14 +254,23 @@ Now that we have these datasets saved as dataframes, we can use these as example
 There are many ways to export data in R. Data can be written out into a .csv file, tab delimited .txt file, RData file, etc. There are also many functions within packages that write out specific datasets generated by that package. 
 To write out to a .csv file:
 ```{r}
-write.csv(csv.dataset, "Module1_1_SameCSVFileNowOut.csv")
+write.csv(csv_dataset, "Module1_1_SameCSVFileNowOut.csv")
 ```
 
 To write out a .txt tab delimited file:
 ```{r}
-write.table(txt.dataset, "Module1_1_SameTXTFileNowOut.txt")
+write.table(txt_dataset, "Module1_1_SameTXTFileNowOut.txt")
 ```
 
+Or... you could use:
+
+
+```{r}
+library(data.table)
+fwrite(csv_dataset, "Module1_1_SameDTFileNowOut.tsv", sep = "\t")
+```
+
+As I showed you earlier, fwrite is so much faster than base R functions.
 
 R also allows objects to be saved in RData files. These files can be read into R, as well, and will load the object into the current workspace. Entire workspaces are also able to be saved.
 
